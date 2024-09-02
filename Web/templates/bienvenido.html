@@ -1,0 +1,32 @@
+{% extends "./base.html" %}
+
+{% block contenido %}
+<div class="container mt-4 bienvenido-template">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="jumbotron text-center">
+                <h1 class="display-4">Bienvenido {{ user.username }}</h1>
+                <p class="lead">Tenemos una lista de productos exclusivos para ti. ¿Quieres conocer más?</p>
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        {% for flan in flanes %}
+        <div class="col-md-3 mb-4">
+            <div class="card bienvenido-card" style="animation-delay: {{ forloop.counter0|add:1|floatformat:1 }}s">
+                <img src="{{ flan.image_url }}" class="card-img-top card-img-custom" alt="Imagen de {{ flan.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ flan.name }}</h5>
+                    <p class="card-text">{{ flan.description }}</p>
+                    
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <a class="btn btn-primary btn-lg" href="{% url 'pasteles' %}" role="button">Descubrir Más</a>
+    </div>
+</div>
+{% endblock %}
